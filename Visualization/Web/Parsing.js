@@ -35,14 +35,15 @@ function log(msg) {
 var homeScores = Array();
 var awayScores = Array();
 
+var teamGames = new Array();
+
 function findGames(team) {
-	var games = new Array();
 	for ( var i = 0; i < onGame.length; i++) {
 		if (onGame[i]["Home Team"] == team) {
-			games.push(onGame[i]);
+			teamGames.push(onGame[i]);
+			console.log(onGame[i]);
 		}
 	}
-	return games;
 }
 
 function plotGraph() {
@@ -51,7 +52,7 @@ function plotGraph() {
 	var selectedTeam = selectedElement.options[selectedElement.selectedIndex].value;
 	// console.log(findGames(selectedTeam));
 
-	var teamGames = findGames(selectedTeam); // Gets an Array of Games with
+	findGames(selectedTeam); // Gets an Array of Games with
 												// the selected HOME Team
 
 	d3.select("svg").remove(); // Resets the SVG container object, in case the
@@ -65,7 +66,7 @@ function plotGraph() {
 	
 	// Draw the results for each match
 	var j = 0;
-	for ( var match in teamGames) // In this case, match is a game by the Home
+	for (var match in teamGames) // In this case, match is a game by the Home
 									// Team versus a variety of Visiting Teams
 	{
 		// Draw the zero line
@@ -73,30 +74,46 @@ function plotGraph() {
 							   .attr("x1", 5)
 							   .attr("y1", 250)
 							   .attr("x2", 5 + (j * 51) + 50) // The graph line can only be as long as the input
-							   .attr("y2", 250).attr("stroke-width", 2)
+							   .attr("y2", 250)
+							   .attr("stroke-width", 2)
 							   .attr("stroke", "black");
 		j++;
 	}
 	
 	// Draw the results for each match
-	var i = 0;
-	for ( var match in teamGames) // In this case, match is a game by the Home
+	for ( var i = 0 ; i < teamGames.length ; i++) // In this case, match is a game by the Home
 									// Team versus a variety of Visiting Teams
 	{
+		console.log(match);
 		// Draw the bar graph ON the current length of line
-		var score = match["Score"];
+		var score = teamGames[i].Score;
 		if (score.indexOf("draw") == 0) {
 			score = score.slice(5, 11);
 		}
 		var bak = score; // For slicing a brand new string (Not sliced yet).
 		var home = score.slice(0, 2); 
 		var away = bak.slice(4, 6);
-		var rect = svgContainer.append("rect")
+		log("Home: "+home);
+		log("Away: "+away);
+		var diff = home - away;
+		var diff2 = away - home;
+		if(diff > 0){
+			var rect = svgContainer.append("rect")
 							   .attr("x", 5 + (i * 51))
 							   .attr("y", 250)
 							   .attr("width", 50)
-							   .attr("height", home - away); // Plot difference of Home Team score to Away Team score
-		i++;
+							   .attr("height", diff*10) // Plot difference of Home Team score to Away Team score
+							   .attr("fill","green"); 
+		}
+		else{
+			var rect = svgContainer.append("rect")
+			   .attr("x", 5 + (i * 51))
+			   .attr("y", 250)
+			   .attr("width", 50)
+			   .attr("height", diff2*10)
+			   .attr("fill","red"); // Plot difference of Home Team score to Away Team score
+		}
+		
 		// TODO Do transition method for height, so that the plotting of the graph is animated. Aesthetics are key.
 	}
 
