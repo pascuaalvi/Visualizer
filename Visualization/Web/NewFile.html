@@ -6,22 +6,46 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Visualization</title>
 </head>
-<body>
-<p></p>
-Choose a Home Team from this list to visualize their results:
-<select id="teamName">
-  <option value="Central Pulse">Central Pulse</option>
-  <option value="Queensland Firebirds">Queensland Firebirds</option>
-  <option value="Northern Mystics">Northern Mystics</option>
-  <option value="Waikato Bay of Plenty Magic">Waikato Bay of Plenty Magic</option>
-  <option value="Canterbury Tactix">Canterbury Tactix</option>
-  <option value="New South Wales Swifts">New South Wales Swifts</option>
-  <option value="Adelaide Thunderbirds">Adelaide Thunderbirds</option>
-  <option value="Southern Steel">Southern Steel</option>
-  <option value="West Coast Fever">West Coast Fever</option>
-  <option value="Melbourne Vixens">Melbourne Vixens</option>  
-</select>
-<input id="confirm" type="button" value="GO" onclick="plotGraph()"/>
+<body background="">
+
+	<p id="visualization"></p>
+	<p id="filterPane">
+	<h2>Filter results using:</h2>
+	<h3>Team Name:</h3>
+	<select id="teamName">
+		<option value="Central Pulse">Central Pulse</option>
+		<option value="Queensland Firebirds">Queensland Firebirds</option>
+		<option value="Northern Mystics">Northern Mystics</option>
+		<option value="Waikato Bay of Plenty Magic">Waikato Bay of
+			Plenty Magic</option>
+		<option value="Canterbury Tactix">Canterbury Tactix</option>
+		<option value="New South Wales Swifts">New South Wales Swifts</option>
+		<option value="Adelaide Thunderbirds">Adelaide Thunderbirds</option>
+		<option value="Southern Steel">Southern Steel</option>
+		<option value="West Coast Fever">West Coast Fever</option>
+		<option value="Melbourne Vixens">Melbourne Vixens</option>
+	</select>
+	<h3>Season:</h3>
+	<select id="season">
+		<option value="2008">2008</option>
+		<option value="2009">2009</option>
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+	</select>
+	<h3>Home Advantage:</h3>
+	<select id="homeAdvantage">
+		<option value="Yes">Yes</option>
+		<option value="No">No</option>
+	</select>
+	<h3>Finals</h3>
+	<select id="finals">
+		<option value="Yes">Yes</option>
+		<option value="No">No</option>
+	</select>
+	</p>
+	<input id="confirm" type="button" value="Visualize" onclick="load()" />
 
 </body>
 </html>

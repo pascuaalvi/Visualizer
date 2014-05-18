@@ -1,6 +1,18 @@
 var onGame = new Array();
 var offGame = new Array();
-d3.csv("https://dl.dropboxusercontent.com/u/155290014/2008-Table1.csv",
+
+
+// The function to start all functions
+function load(){
+onGame = [];
+offGame = [];	
+// Get Season that was selected by User
+var filename = "https://dl.dropboxusercontent.com/u/155290014/";
+var selectedElement = document.getElementById("season");
+var selectedSeason = selectedElement.options[selectedElement.selectedIndex].value;
+var finalFilename = filename+""+selectedSeason+"-Table1.csv";
+
+d3.csv(finalFilename,
 		function(error, data) {
 			if (error != null)
 				// console.log(error);
@@ -11,7 +23,9 @@ d3.csv("https://dl.dropboxusercontent.com/u/155290014/2008-Table1.csv",
 						onGame.push(d);
 					}
 				});
+			plotGraph();
 		});
+}
 
 // For debugging purposes only
 // FIXME Throws uncaught errors, must be a better way to print statements.
@@ -32,9 +46,6 @@ function log(msg) {
 // For this program, I have chosen strategy 1. This is because it is more
 // visually representing of the home team's performance.
 // A negative value would mean a poor performance, and vice versa.
-var homeScores = Array();
-var awayScores = Array();
-
 var teamGames = new Array();
 
 function findGames(team) {
@@ -47,18 +58,19 @@ function findGames(team) {
 }
 
 function plotGraph() {
+	
 	teamGames = [];
 	// Get the selected HOME Team from the drop-down-list
 	var selectedElement = document.getElementById("teamName");
 	var selectedTeam = selectedElement.options[selectedElement.selectedIndex].value;
 	// console.log(findGames(selectedTeam));
 
-	findGames(selectedTeam); // Gets an Array of Games with
-												// the selected HOME Team
+	findGames(selectedTeam);  // Gets an Array of Games with
+							  // the selected HOME Team
 
-	d3.select("#Box").remove(); // Resets the SVG container object, in case the
-								// Visualize button is clicked multiple times
-								// more
+	d3.select("#Box").remove(); 
+	// Resets the SVG container object, in case the
+	// Visualize button is clicked multiple times.
 	// Prevents the effects of plotGraph() from stacking
 
 	var svgContainer = d3.select("p").append("svg")
@@ -68,8 +80,9 @@ function plotGraph() {
 		
 	// Draw the results for each match
 	var j = 0;
-	for (var match in teamGames) // In this case, match is a game by the Home
-									// Team versus a variety of Visiting Teams
+	for (var match in teamGames) 
+	// In this case, match is a game by the Home
+	// Team versus a variety of Visiting Teams
 	{
 		// Draw the zero line
 		var line = svgContainer.append("line")
@@ -120,7 +133,7 @@ function plotGraph() {
 			rect.transition().attr("height", diff2*5).duration(1000);
 		}
 		
-		// TODO Do transition method for height, so that the plotting of the graph is animated. Aesthetics are key.
+		// TODO print graph in side of filtering attributes, not at the top.
 	}
 
 }
