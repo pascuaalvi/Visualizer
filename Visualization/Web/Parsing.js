@@ -5,7 +5,7 @@ var offGame = new Array();
 // The function to start all functions
 function load(){
 onGame = [];
-offGame = [];	
+offGame = [];
 // Get Season that was selected by User
 var filename = "https://dl.dropboxusercontent.com/u/155290014/";
 var selectedElement = document.getElementById("season");
@@ -58,7 +58,7 @@ function findGames(team) {
 }
 
 function plotGraph() {
-	
+
 	teamGames = [];
 	// Get the selected HOME Team from the drop-down-list
 	var selectedElement = document.getElementById("teamName");
@@ -68,33 +68,39 @@ function plotGraph() {
 	findGames(selectedTeam);  // Gets an Array of Games with
 							  // the selected HOME Team
 
-	d3.select("#Box").remove(); 
+	d3.select("#Box").remove();
 	// Resets the SVG container object, in case the
 	// Visualize button is clicked multiple times.
 	// Prevents the effects of plotGraph() from stacking
 
-	var svgContainer = d3.select("p").append("svg")
+	var svgContainer = d3.select("#visualization").append("svg")
 									 .attr("id","Box")
-									 .attr("width", 800)
-									 .attr("height", 500);
-		
+									 .attr("width", 1200)
+									 .attr("height", 800);
+
+	var lineYPos = 400;
+	var barWidth = 80;
+	var spaceFromAxis = 100;
+
 	// Draw the results for each match
 	var j = 0;
-	for (var match in teamGames) 
+	for (var match in teamGames)
 	// In this case, match is a game by the Home
 	// Team versus a variety of Visiting Teams
 	{
 		// Draw the zero line
 		var line = svgContainer.append("line")
-							   .attr("x1", 5)
-							   .attr("y1", 250)
-							   .attr("x2", 5 + (teamGames.length * 51) + 50) // The graph line can only be as long as the input
-							   .attr("y2", 250)
+							   .attr("x1", spaceFromAxis)
+							   .attr("y1", lineYPos)
+							   .attr("x2", spaceFromAxis + (teamGames.length * (barWidth+1)) + barWidth) // The graph line can only be as long as the input
+							   .attr("y2", lineYPos)
 							   .attr("stroke-width", 2)
 							   .attr("stroke", "black");
 		j++;
 	}
-	
+
+	var scaleHeight = 20;
+
 	// Draw the results for each match
 	for ( var i = 0 ; i < teamGames.length ; i++) // In this case, match is a game by the Home
 	// Team versus a variety of Visiting Teams
@@ -106,7 +112,7 @@ function plotGraph() {
 			score = score.slice(5, 11);
 		}
 		var bak = score; // For slicing a brand new string (Not sliced yet).
-		var home = score.slice(0, 2); 
+		var home = score.slice(0, 2);
 		var away = bak.slice(4, 6);
 		log("Home: "+home);
 		log("Away: "+away);
@@ -114,25 +120,25 @@ function plotGraph() {
 		var diff2 = away - home;
 		if(diff > 0){
 			var rect = svgContainer.append("rect")
-							   .attr("x", 5 + (i * 51))
-							   .attr("y",250)
-							   .attr("width", 50)
+							   .attr("x", spaceFromAxis + (i * (barWidth+1)))
+							   .attr("y",lineYPos)
+							   .attr("width", barWidth)
 							   .attr("height", 0) // Plot difference of Home Team score to Away Team score
-							   .attr("fill","green"); 
-			rect.transition().attr("height", diff*5).duration(1000).attr("y",250-(diff*5));
-			
+							   .attr("fill","green");
+			rect.transition().attr("height", diff*scaleHeight).duration(1000).attr("y",lineYPos-(diff*scaleHeight));
+
 		}
 		else{
 			var rect = svgContainer.append("rect")
-			   .attr("x", 5 + (i * 51))
-			   .attr("y", 250)
-			   .attr("width", 50)
+			   .attr("x", spaceFromAxis + (i * (barWidth+1)))
+			   .attr("y", lineYPos)
+			   .attr("width", barWidth)
 			   .attr("height",0)
 			   .attr("fill","red"); // Plot difference of Home Team score to Away Team score
-			
-			rect.transition().attr("height", diff2*5).duration(1000);
+
+			rect.transition().attr("height", diff2*scaleHeight).duration(1000);
 		}
-		
+
 		// TODO print graph in side of filtering attributes, not at the top.
 	}
 
