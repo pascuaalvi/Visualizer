@@ -11,12 +11,13 @@
 
 	<div id="container" style="width: 1500px">
 
-		<div id="header" style="border: 1.5px solid; background:linear-gradient(silver, white);">
+		<div id="header"
+			style="border: 1.5px solid; background: linear-gradient(silver, white);">
 			<h1 align="center" style="margin-bottom: 0;">Visualizer</h1>
 		</div">
 
 		<div id="filters"
-			style="border: 2px solid;background-color: #f8f8f8; height: 500px; width: 300px; float: right;"
+			style="border: 2px solid; background-color: #f8f8f8; height: 800px; width: 300px; float: right;"
 			class="styled-select">
 			<h2 align="center">Filter results using:</h2>
 			<h3>Team Name:</h3>
@@ -54,19 +55,20 @@
 				<option value="No">No</option>
 			</select>
 			<p></p>
-
+			<input id="confirm" type="button" value="Visualize" onclick="load()" />
 		</div>
-		<div>
-				<input id="confirm" type="button" value="Visualize" onclick="load()" />
-			</div>
+
+
+	</div>
 
 
 
-		<div id="visuals"
-			style="border: 2px solid;background-color: #FFFFFF; height: 800px; width: 1190px; float: left;"
-			class="styled-select">
-			<p align="center" id="visualization"></p>
-		</div>
+
+	<div id="visuals"
+		style="border: 2px solid; background-color: #FFFFFF; height: 800px; width: 1190px; float: left;"
+		class="styled-select">
+		<p align="center" id="visualization"></p>
+	</div>
 
 	</div>
 </body>
