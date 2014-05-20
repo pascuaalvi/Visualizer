@@ -3,6 +3,7 @@
 <head>
 <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
 <script type="text/javascript" src="Parsing.js"></script>
+<script type="text/javascript" src="Difference Plot.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="Style.css">
 <title>Visualization</title>
@@ -13,12 +14,18 @@
 
 		<div id="header"
 			style="border: 1.5px solid; background: linear-gradient(silver, white);">
-			<h1 align="center" style="margin-bottom: 0;">Visualizer</h1>
+			<h1 align="center" style="margin-bottom: 0;">ANZ Championship
+				Visualization</h1>
 		</div">
 
 		<div id="filters"
 			style="border: 2px solid; background-color: #f8f8f8; height: 800px; width: 300px; float: right;"
 			class="styled-select">
+			<h1 align="center">Trend to visualize:</h1>
+			<select id="operation">
+				<option value="Difference Plot">Difference in In-Match
+					Scores</option>
+			</select>
 			<h2 align="center">Filter results using:</h2>
 			<h3>Team Name:</h3>
 			<select id="teamName">
@@ -44,10 +51,11 @@
 				<option value="2012">2012</option>
 				<option value="2013">2013</option>
 			</select>
-			<h3>Home Advantage:</h3>
-			<select id="homeAdvantage">
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+			<h3>Advantage:</h3>
+			<select id="Advantage">
+				<option value="Home Team">Home</option>
+				<option value="Away Team">Away</option>
+				<option value="All">All</option>
 			</select>
 			<h3>Finals</h3>
 			<select id="finals">
@@ -68,6 +76,12 @@
 		style="border: 2px solid; background-color: #FFFFFF; height: 800px; width: 1190px; float: left;"
 		class="styled-select">
 		<p align="center" id="visualization"></p>
+	</div>
+
+	<div id="signature"
+		style="border: 2px solid; background-color: #FFFFFF; height: 50px; width: 1495px; float: left;"
+		class="styled-select">
+		<h5 align="center">Created by Alvin Pascual, VUW Student no.300269659</h5>
 	</div>
 
 	</div>
