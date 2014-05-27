@@ -23,19 +23,28 @@ div {
 	border: 2px solid;
 	border-radius: 25px;
 	overflow: hidden;
-	background: url(down_arrow_select.jpg) no-repeat right #ddd;
 	-webkit-appearance: none;
 
 }
 
 .styled-select input {
 	width: 300px;
-	height: 100px;
-	padding: 10px;
+	height: 25px;
 	font-size: 16px;
 	line-height: 1;
 	border-radius: 25px;
 	overflow: hidden;
-	background: linear-gradient(white, silver);
+	background: linear-gradient(blue, silver);
+	border: 2px solid;
+}
+
+.styled-select input {
+	width: 300px;
+	height: 100px;
+	font-size: 16px;
+	line-height: 1;
+	border-radius: 25px;
+	overflow: hidden;
+	background: linear-gradient(black, silver);
 	border: 2px solid;
 }

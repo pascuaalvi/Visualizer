@@ -10,22 +10,17 @@
 </head>
 <body background="">
 
-	<div id="container" style="width: 1500px">
+	<div id="container" style="width: 1300px">
 
 		<div id="header"
-			style="border: 1.5px solid; background: linear-gradient(silver, white);">
+			style="border: 1.5px solid;background: linear-gradient(silver, white);">
 			<h1 align="center" style="margin-bottom: 0;">ANZ Championship
 				Visualization</h1>
-		</div">
+		</div>
 
 		<div id="filters"
-			style="border: 2px solid; background-color: #f8f8f8; height: 800px; width: 300px; float: right;"
+			style="border: 2px solid; background-color: #f8f8f8; height: 600px; width: 300px; float: right;"
 			class="styled-select">
-			<h1 align="center">Trend to visualize:</h1>
-			<select id="operation">
-				<option value="Difference Plot">Difference in In-Match
-					Scores</option>
-			</select>
 			<h2 align="center">Filter results using:</h2>
 			<h3>Team Name:</h3>
 			<select id="teamName">
@@ -62,7 +57,7 @@
 				<option value="Yes">Yes</option>
 				<option value="No">No</option>
 			</select>
-			<p></p>
+			<svg style="height: 50px; width: 300px;""></svg>
 			<input id="confirm" type="button" value="Visualize" onclick="load()" />
 		</div>
 
@@ -73,15 +68,16 @@
 
 
 	<div id="visuals"
-		style="border: 2px solid; background-color: #FFFFFF; height: 800px; width: 1190px; float: left;"
+		style="border: 2px solid; background-color: #FFFFFF; height: 600px; width: 990px; float: left;"
 		class="styled-select">
 		<p align="center" id="visualization"></p>
 	</div>
 
 	<div id="signature"
-		style="border: 2px solid; background-color: #FFFFFF; height: 50px; width: 1495px; float: left;"
+		style="border: 2px solid; background-color: #FFFFFF; height: 40px; width: 1295px; float: left;"
 		class="styled-select">
-		<h5 align="center">Created by Alvin Pascual, VUW Student no.300269659</h5>
+		<h5 align="center">Created by Alvin Pascual, VUW Student
+			no.300269659</h5>
 	</div>
 
 	</div>

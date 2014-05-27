@@ -16,20 +16,20 @@ function plotGraphDP() {
 	// Prevents the effects of plotGraph() from stacking
 	var svgContainer = d3.select("#visualization").append("svg")
 									 .attr("id","Box")
-									 .attr("width", 1200)
-									 .attr("height", 800);
+									 .attr("width", 1000)
+									 .attr("height", 600);
 	//Axis stuff
-	var maxScoreDiff = 400;
+	var maxScoreDiff = 250;
 	var axisX = 100;
-	var lineYPos = 400;
-	var barWidth = 90;
+	var lineYPos = 250;
+	var barWidth = 50;
 	var spaceFromAxis = 200;
-	var scaleHeight = 10;
+	var scaleHeight = 5;
 
 
 
 	var yLabel = svgContainer.append("text")
-	   .attr("x",200)
+	   .attr("x",70)
 	   .attr("y",90)
 	   .text("Difference in In-Match Scores")
 	   .attr("font-family", "sans-serif")
@@ -42,14 +42,14 @@ function plotGraphDP() {
 	   .attr("x1", axisX)
 	   .attr("y1", lineYPos-maxScoreDiff)
 	   .attr("x2", axisX) // The graph line can only be as long as the input
-	   .attr("y2", lineYPos+maxScoreDiff-40)
+	   .attr("y2", lineYPos+maxScoreDiff-20)
 	   .attr("stroke-width", 2)
 	   .attr("stroke", "black");
 
 	var initialvalue = -36;
 
 	// Draw axis points and label value
-	for(var start = (lineYPos+maxScoreDiff-40); start > (lineYPos-maxScoreDiff-40); start -= 40){
+	for(var start = (lineYPos+maxScoreDiff-25); start > (lineYPos-maxScoreDiff-25); start -= 25){
 		var yPoint = svgContainer.append("line")
 		   .attr("x1", axisX+10)
 		   .attr("y1", start)
@@ -78,7 +78,7 @@ function plotGraphDP() {
 		var line = svgContainer.append("line")
 		   .attr("x1", axisX)
 		   .attr("y1", lineYPos)
-		   .attr("x2", spaceFromAxis + ((homeGames.length) * (barWidth))+ barWidth) // The graph line can only be as long as the input
+		   .attr("x2", spaceFromAxis + ((homeGames.length) * (barWidth))+ barWidth+ (barWidth/2)) // The graph line can only be as long as the input
 		   .attr("y2", lineYPos)
 		   .attr("stroke-width", 2)
 		   .attr("stroke", "black");
@@ -105,7 +105,7 @@ function plotGraphDP() {
 			var diff2 = away - home;
 			if(diff > 0){
 				var rect = svgContainer.append("rect")
-								   .attr("x", spaceFromAxis + (i * (barWidth+10))+ barWidth)
+								   .attr("x", spaceFromAxis + (i * (barWidth+10)))
 								   .attr("y",lineYPos)
 								   .attr("width", barWidth)
 								   .attr("height", 0) // Plot difference of Home Team score to Away Team score
@@ -133,7 +133,7 @@ function plotGraphDP() {
 			var line = svgContainer.append("line")
 			   .attr("x1", axisX)
 			   .attr("y1", lineYPos)
-			   .attr("x2", spaceFromAxis + ((awayGames.length) * (barWidth))+ barWidth) // The graph line can only be as long as the input
+			   .attr("x2", spaceFromAxis + ((awayGames.length) * (barWidth))+ barWidth + (barWidth/2)) // The graph line can only be as long as the input
 			   .attr("y2", lineYPos)
 			   .attr("stroke-width", 2)
 			   .attr("stroke", "black");
@@ -181,7 +181,7 @@ function plotGraphDP() {
 		}
 	}
 		else if (selectedAdvantage == "All"){
-			barWidth = 50;
+			barWidth = 30;
 
 			//Longer line for more info
 			var line = svgContainer.append("line")

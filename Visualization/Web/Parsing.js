@@ -23,9 +23,6 @@ d3.csv(finalFilename,
 						onGame.push(d);
 					}
 				});
-			var selectedElement = document.getElementById("operation");
-			var selectedOperation = selectedElement.options[selectedElement.selectedIndex].value;
-			if(selectedOperation == "Difference Plot")
 			plotGraphDP();
 		});
 }
