@@ -1,30 +1,38 @@
 var onGame = new Array();
 var offGame = new Array();
 
-
 // The function to start all functions
-function load(){
-onGame = [];
-offGame = [];
-// Get Season that was selected by User
-var filename = "https://dl.dropboxusercontent.com/u/155290014/SWEN303%20Assignment2/tidyData/";
-var selectedElement = document.getElementById("season");
-var selectedSeason = selectedElement.options[selectedElement.selectedIndex].value;
-var finalFilename = filename+""+selectedSeason+"-Table1.csv";
+function load() {
+	onGame = [];
+	offGame = [];
+	// Get Season that was selected by User
+	var filename = "https://dl.dropboxusercontent.com/u/155290014/SWEN303%20Assignment2/tidyData/";
+	var selectedElement = document.getElementById("season");
+	var selectedSeason = selectedElement.options[selectedElement.selectedIndex].value;
+	var finalFilename = filename + "" + selectedSeason + "-Table1.csv";
 
-d3.csv(finalFilename,
-		function(error, data) {
-			if (error != null)
-				// console.log(error);
-				error.forEach(function(d) {
-					if (d.Date.indexOf("BYES:") == 0) {
-						offGame.push(d);
-					} else {
-						onGame.push(d);
-					}
-				});
-			plotGraphDP();
-		});
+	d3
+			.csv(
+					finalFilename,
+					function(error, data) {
+						if (error != null)
+							// console.log(error);
+							error.forEach(function(d) {
+								if (d.Date.indexOf("BYES:") == 0) {
+									offGame.push(d);
+								} else {
+									onGame.push(d);
+								}
+							});
+						var selectedElement = document
+								.getElementById("teamName");
+						var selectedTeam = selectedElement.options[selectedElement.selectedIndex].value;
+						if (selectedTeam != null) {
+							plotGraphDP();
+						} else {
+							plotGraphHierarchy();
+						}
+					});
 }
 
 // For debugging purposes only
@@ -49,13 +57,14 @@ function log(msg) {
 var homeGames = new Array();
 var awayGames = new Array();
 
+var allGames = new Array();
+
 function findGames(team) {
 	for ( var i = 0; i < onGame.length; i++) {
 		if (onGame[i]["Home Team"] == team) {
 			homeGames.push(onGame[i]);
 			console.log(onGame[i]);
-		}
-		else if (onGame[i]["Away Team"] == team) {
+		} else if (onGame[i]["Away Team"] == team) {
 			awayGames.push(onGame[i]);
 			console.log(onGame[i]);
 		}
@@ -63,7 +72,7 @@ function findGames(team) {
 }
 
 function findGamesWithPos(team, minRound, maxRound) {
-	for (var i = 0; i < onGame.length; i++) {
+	for ( var i = 0; i < onGame.length; i++) {
 		if (onGame[i]["Home Team"] == team) {
 
 			if (parseInt(onGame[i]["Round"]) >= minRound) {
@@ -81,6 +90,25 @@ function findGamesWithPos(team, minRound, maxRound) {
 						console.log(onGame[i]);
 					}
 				}
+			}
+		}
+	}
+}
+
+function findGamesH(){
+	for ( var i = 0; i < onGame.length; i++) {
+			allGames.push(onGame[i]);
+			console.log(onGame[i]);
+	}
+}
+
+function findGamesWithPosH(minRound, maxRound) {
+	for ( var i = 0; i < onGame.length; i++) {
+
+		if (parseInt(onGame[i]["Round"]) >= minRound) {
+			if (parseInt(onGame[i]["Round"]) <= maxRound) {
+						allGames.push(onGame[i]);
+						console.log(onGame[i]);
 			}
 		}
 	}
