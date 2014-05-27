@@ -6,9 +6,23 @@ function plotGraphDP() {
 	var selectedElement = document.getElementById("teamName");
 	var selectedTeam = selectedElement.options[selectedElement.selectedIndex].value;
 	// console.log(findGames(selectedTeam));
+	var selectedElement2 = document.getElementById("position");
+	var selectedPosition = selectedElement2.options[selectedElement2.selectedIndex].value;
+	
+	if(selectedPosition != "All"){
+		var positions = selectedPosition.split("to");
+		var min = parseInt(positions[0]);
+		var max = parseInt(positions[1]);
 
+		log("Min: "+ min + " ,Max: "+max);
+		findGamesWithPos(selectedTeam,min,max);
+		// Gets an Array of Games with
+		// the selected HOME Team within the selected Rounds
+	}
+	else{
 	findGames(selectedTeam);  // Gets an Array of Games with
-							  // the selected HOME Team
+	  // the selected HOME Team
+	}
 
 	d3.select("#Box").remove();
 	// Resets the SVG container object, in case the

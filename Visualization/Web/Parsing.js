@@ -61,3 +61,27 @@ function findGames(team) {
 		}
 	}
 }
+
+function findGamesWithPos(team, minRound, maxRound) {
+	for (var i = 0; i < onGame.length; i++) {
+		if (onGame[i]["Home Team"] == team) {
+
+			if (parseInt(onGame[i]["Round"]) >= minRound) {
+				if (parseInt(onGame[i]["Round"]) <= maxRound) {
+					homeGames.push(onGame[i]);
+					console.log(onGame[i]);
+				}
+			}
+		} else if (onGame[i]["Round"] == team) {
+			if (onGame[i]["Home Team"] == team) {
+
+				if (parseInt(onGame[i]["Round"]) >= minRound) {
+					if (parseInt(onGame[i]["Round"]) <= maxRound) {
+						awayGames.push(onGame[i]);
+						console.log(onGame[i]);
+					}
+				}
+			}
+		}
+	}
+}
