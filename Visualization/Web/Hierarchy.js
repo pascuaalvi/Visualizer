@@ -27,12 +27,12 @@ function plotGraphHierarchy() {
 									 .attr("height", 600);
 	
 	var scoreTally = [
-	                  {name:"Central Pulse",score:0}, // 0
+	                  {name:"New South Wales Swifts",score:0}, // 0
 	                  {name:"Queensland Firebirds",score:0}, // 1
 	                  {name:"Northern Mystics",score:0}, // 2
 	                  {name:"Waikato Bay of Plenty Magic",score:0}, // 3
 	                  {name:"Canterbury Tactix",score:0},  // 4
-	                  {name:"New South Wales Swifts",score:0}, // 5
+	                  {name:"Central Pulse",score:0}, // 5
 	                  {name:"Adelaide Thunderbirds",score:0}, // 6
 	                  {name:"Southern Steel",score:0}, // 7
 	                  {name:"West Coast Fever",score:0}, // 8
@@ -76,10 +76,10 @@ function plotGraphHierarchy() {
 	// Graph Parameters
 	var barHeight = 25;
 	var marginX = 10;
-	var marginY = 10;
+	var marginY = 30;
 	var spaceBetweenBars = 30;
 	
-	var scaleWidth = 20;
+	var scaleWidth = 30;
 	
 	// Draw Hierarchy
 	// Draw the results for each season periodS
@@ -87,7 +87,7 @@ function plotGraphHierarchy() {
 	{         
        var teamColor = "";
 		if(i == 0){
-			teamColor = "#FFFF00";
+			teamColor = "#FF00FF";
 		}
 		else if(i == 1){
 			teamColor = "#800080";
@@ -102,7 +102,7 @@ function plotGraphHierarchy() {
 			teamColor = "#FF0000";
 		}
 		else if(i == 5){
-			teamColor = "#FF00FF";
+			teamColor = "#FFFF00";
 		}
 		else if(i == 6){
 			teamColor = "#FF1493";
@@ -119,13 +119,22 @@ function plotGraphHierarchy() {
 		
 		var score = scoreTally[i]["score"];
 		console.log("Index: "+i+" Score: "+score);
-			var rect = svgContainer.append("rect")
-							   .attr("x", marginX)
-							   .attr("y",marginY + (i*(barHeight+spaceBetweenBars)))
-							   .attr("width", 0)
-							   .attr("height", barHeight) // Plot difference of Home Team score to Away Team score
-							   .attr("fill",teamColor);
-			rect.transition().attr("width", score*scaleWidth).duration(1000);
-
+		
+		var rectLabel = svgContainer.append("text")
+		   .attr("x",marginX)
+		   .attr("y",(marginY + (i*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
+		   .text(scoreTally[i]["name"] +": "+scoreTally[i]["score"]+" points")
+		   .attr("font-family", "arial")
+		   .attr("font-size", "25px")
+		   .attr("fill",teamColor);
+		
+		var rect = svgContainer.append("rect")
+						   .attr("x", marginX)
+						   .attr("y",marginY + (i*(barHeight+spaceBetweenBars)))
+						   .attr("width", 0)
+						   .attr("height", barHeight) // Plot difference of Home Team score to Away Team score
+						   .attr("fill",teamColor);
+		
+		rect.transition().attr("width", (score*scaleWidth)+5).duration(1000);
 	}
 }
