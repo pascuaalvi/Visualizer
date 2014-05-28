@@ -2,6 +2,8 @@
 <html>
 <head>
 <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+<script type="text/javascript" src="Index.js"></script>
+<script type="text/javascript" src="Parsing.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="Style.css">
 <title>Visualization</title>
@@ -19,7 +21,8 @@
 		style="border: 2px solid; background-color: #FFFFFF; height: 600px; width: 1300px; float: left;"
 		class="styled-select">
 
-		<a href="BarGraph.html"> <svg width="580" height="120"> <g>
+		<a href="Difference Plot.html" onclick="setDiff()"> 
+		<svg width="580" height="120"> <g>
 			<rect x="0" y="0" width="580" height="120" fill="white"
 				stroke="black"></rect> <text x="30" y="70" font-family="Verdana"
 				font-size="35" fill="black"> Difference in In-Match Scores</text> </g> </svg>
@@ -27,10 +30,11 @@
 		
 		<svg width="100" height="100"></svg>
 		
-		<a href="Hierarchy.html"> <svg width="580" height="120"> <g>
+		<a href="Hierarchy.html" onclick="setHier()">
+		 <svg width="580" height="120"> <g>
 			<rect x="0" y="0" width="580" height="120" fill="white"
 				stroke="black"></rect> <text x="140" y="70" font-family="Verdana"
-				font-size="35" fill="black"> Rivalries</text> </g> </svg>
+				font-size="35" fill="black"> Rankings</text> </g> </svg>
 		</a>
 
 	</div>

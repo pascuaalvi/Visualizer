@@ -24,13 +24,17 @@ function load() {
 									onGame.push(d);
 								}
 							});
-						var selectedElement = document
-								.getElementById("teamName");
-						var selectedTeam = selectedElement.options[selectedElement.selectedIndex].value;
-						if (selectedTeam != null) {
+						
+						console.log(type);
+												
+						if(type == 1){
 							plotGraphDP();
-						} else {
+						}
+						else if(type == 2){
 							plotGraphHierarchy();
+						}						
+						else{
+							return;
 						}
 					});
 }
@@ -39,7 +43,7 @@ function load() {
 // FIXME Throws uncaught errors, must be a better way to print statements.
 function log(msg) {
 	setTimeout(function() {
-		throw new Error(msg);
+		throw new Error("MADE BY ME: " + msg);
 	}, 0);
 }
 //
@@ -95,21 +99,11 @@ function findGamesWithPos(team, minRound, maxRound) {
 	}
 }
 
-function findGamesH(){
-	for ( var i = 0; i < onGame.length; i++) {
-			allGames.push(onGame[i]);
-			console.log(onGame[i]);
-	}
-}
-
 function findGamesWithPosH(minRound, maxRound) {
 	for ( var i = 0; i < onGame.length; i++) {
-
-		if (parseInt(onGame[i]["Round"]) >= minRound) {
 			if (parseInt(onGame[i]["Round"]) <= maxRound) {
 						allGames.push(onGame[i]);
 						console.log(onGame[i]);
 			}
-		}
 	}
 }

@@ -1,3 +1,5 @@
+type = 1;
+
 function plotGraphDP() {
 
 	homeGames = [];
@@ -30,7 +32,7 @@ function plotGraphDP() {
 	// Prevents the effects of plotGraph() from stacking
 	var svgContainer = d3.select("#visualization").append("svg")
 									 .attr("id","Box")
-									 .attr("width", 1000)
+									 .attr("width", 800)
 									 .attr("height", 600);
 	//Axis stuff
 	var maxScoreDiff = 250;

@@ -2,6 +2,7 @@
 <html>
 <head>
 <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+<script type="text/javascript" src="Index.js"></script>
 <script type="text/javascript" src="Parsing.js"></script>
 <script type="text/javascript" src="Hierarchy.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -31,10 +32,11 @@
 				<option value="2012">2012</option>
 				<option value="2013">2013</option>
 			</select>
-			<h3>Finals</h3>
-			<select id="finals">
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+			<h3>Position in Season</h3>
+			<select id="position">
+				<option value="01to09">Early Season (Rounds 1-9)</option>
+				<option value="10to14">Mid Season   (Rounds 1-14)</option>
+				<option value="15to17">Final Season (Rounds 1-17)</option>
 			</select>
 			<svg style="height: 50px; width: 300px;""></svg>
 			<input id="confirm" type="button" value="Visualize" onclick="load()" />
