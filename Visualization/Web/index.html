@@ -21,20 +21,31 @@
 		style="border: 2px solid; background-color: #FFFFFF; height: 600px; width: 1300px; float: left;"
 		class="styled-select">
 
-		<a href="Difference Plot.html" onclick="setDiff()"> 
-		<svg width="580" height="120"> <g>
-			<rect x="0" y="0" width="580" height="120" fill="white"
-				stroke="black"></rect> <text x="30" y="70" font-family="Verdana"
-				font-size="35" fill="black"> Difference in In-Match Scores</text> </g> </svg>
+		<a href="Difference Plot.html" onclick="setDiff()"> <svg
+				width="640" height="120"> <defs> <linearGradient
+				id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"> <stop
+				offset="0%" style="stop-color:rgb(68,68,68);stop-opacity:1" /> <stop
+				offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+			</linearGradient> </defs> <g> <rect x="0" y="0" width="640" height="120"
+				fill="url(#grad1)" stroke="black"
+				onmouseover="evt.target.setAttribute('opacity', '0.5');"
+				onmouseout="evt.target.setAttribute('opacity','1)');"></rect> <text
+				x="30" y="70" font-family="Verdana" font-size="35" fill="black">
+			Difference in In-Match Scores</text> </g> </svg>
 		</a>
-		
-		<svg width="100" height="100"></svg>
-		
-		<a href="Hierarchy.html" onclick="setHier()">
-		 <svg width="580" height="120"> <g>
-			<rect x="0" y="0" width="580" height="120" fill="white"
-				stroke="black"></rect> <text x="140" y="70" font-family="Verdana"
-				font-size="35" fill="black"> Rankings</text> </g> </svg>
+
+
+		<a href="Hierarchy.html" onclick="setHier()"> <svg width="655"
+				height="120"> <defs> <linearGradient id="grad2" x1="0%"
+				y1="0%" x2="100%" y2="0%"> <stop offset="0%"
+				style="stop-color:rgb(255,255,255);stop-opacity:1" /> <stop
+				offset="100%" style="stop-color:rgb(68,68,68);stop-opacity:1" /> </linearGradient> </defs>
+			<g> <rect x="0" y="0" width="655" height="120" fill="url(#grad2)"
+				stroke="black"
+				onmouseover="evt.target.setAttribute('opacity', '0.5');"
+				onmouseout="evt.target.setAttribute('opacity','1)');"></rect> <text
+				x="140" y="70" font-family="Verdana" font-size="35" fill="black">
+			Rankings</text> </g> </svg>
 		</a>
 
 	</div>
