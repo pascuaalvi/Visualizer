@@ -81,20 +81,26 @@ function plotGraphHierarchy() {
 	
 	var scaleWidth = 30;
 	
+	var axis = svgContainer.append("line")
+	   .attr("x1", marginX)
+	   .attr("y1", marginY-barHeight)
+	   .attr("x2", marginX) // The graph line can only be as long as the input
+	   .attr("y2", (marginY + (scoreTally.length*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10)-(barHeight))
+	   .attr("stroke-width", 2)
+	   .attr("stroke", "black");
+	
 	// Draw Hierarchy
 	// Draw the results for each season periodS
 	for ( var i = 0 ; i < scoreTally.length ; i++) 
-	{         
-       
-		
+	{   
 		var score = scoreTally[i]["score"];
 		console.log("Index: "+i+" Score: "+score);
 		
 		var rectLabel = svgContainer.append("text")
 		   .attr("x",marginX)
 		   .attr("y",(marginY + (i*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
-		   .text(scoreTally[i]["name"] +": "+scoreTally[i]["score"]+" points")
-		   .attr("font-family", "arial")
+		   .text(scoreTally[i]["name"] +": "+score+" points")
+		   .attr("font-family", "Arial")
 		   .attr("font-size", "25px")
 		   .attr("fill",scoreTally[i]["teamColor"]);
 		
