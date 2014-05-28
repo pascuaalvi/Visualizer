@@ -27,16 +27,16 @@ function plotGraphHierarchy() {
 									 .attr("height", 600);
 	
 	var scoreTally = [
-	                  {name:"New South Wales Swifts",score:0}, // 0
-	                  {name:"Queensland Firebirds",score:0}, // 1
-	                  {name:"Northern Mystics",score:0}, // 2
-	                  {name:"Waikato Bay of Plenty Magic",score:0}, // 3
-	                  {name:"Canterbury Tactix",score:0},  // 4
-	                  {name:"Central Pulse",score:0}, // 5
-	                  {name:"Adelaide Thunderbirds",score:0}, // 6
-	                  {name:"Southern Steel",score:0}, // 7
-	                  {name:"West Coast Fever",score:0}, // 8
-	                  {name:"Melbourne Vixens",score:0}, // 9
+	                  {name:"New South Wales Swifts",score:0,teamColor:"#FF00FF"}, // 0
+	                  {name:"Queensland Firebirds",score:0,teamColor:"#800080"}, // 1
+	                  {name:"Northern Mystics",score:0,teamColor:"#0000FF"}, // 2
+	                  {name:"Waikato Bay of Plenty Magic",score:0,teamColor:"#000000"}, // 3
+	                  {name:"Canterbury Tactix",score:0,teamColor:"#FF0000"},  // 4
+	                  {name:"Central Pulse",score:0,teamColor:"#FFFF00"}, // 5
+	                  {name:"Adelaide Thunderbirds",score:0,teamColor:"#FF1493"}, // 6
+	                  {name:"Southern Steel",score:0,teamColor:"#00B7EB"}, // 7
+	                  {name:"West Coast Fever",score:0,teamColor:"#32CD32"}, // 8
+	                  {name:"Melbourne Vixens",score:0,teamColor:"#008080"}, // 9
 	                  ];
 	
 	console.log("Created scoreTally.");
@@ -85,37 +85,7 @@ function plotGraphHierarchy() {
 	// Draw the results for each season periodS
 	for ( var i = 0 ; i < scoreTally.length ; i++) 
 	{         
-       var teamColor = "";
-		if(i == 0){
-			teamColor = "#FF00FF";
-		}
-		else if(i == 1){
-			teamColor = "#800080";
-		}
-		else if(i == 2){
-			teamColor = "#0000FF";
-		}
-		else if(i == 3){
-			teamColor = "#000000";
-		}
-		else if(i == 4){
-			teamColor = "#FF0000";
-		}
-		else if(i == 5){
-			teamColor = "#FFFF00";
-		}
-		else if(i == 6){
-			teamColor = "#FF1493";
-		}
-		else if(i == 7){
-			teamColor = "#00B7EB";
-		}
-		else if(i == 8){
-			teamColor = "#32CD32";
-		}
-		else if(i == 9){
-			teamColor = "#008080";
-		}
+       
 		
 		var score = scoreTally[i]["score"];
 		console.log("Index: "+i+" Score: "+score);
@@ -126,14 +96,14 @@ function plotGraphHierarchy() {
 		   .text(scoreTally[i]["name"] +": "+scoreTally[i]["score"]+" points")
 		   .attr("font-family", "arial")
 		   .attr("font-size", "25px")
-		   .attr("fill",teamColor);
+		   .attr("fill",scoreTally[i]["teamColor"]);
 		
 		var rect = svgContainer.append("rect")
 						   .attr("x", marginX)
 						   .attr("y",marginY + (i*(barHeight+spaceBetweenBars)))
 						   .attr("width", 0)
 						   .attr("height", barHeight) // Plot difference of Home Team score to Away Team score
-						   .attr("fill",teamColor);
+						   .attr("fill",scoreTally[i]["teamColor"]);
 		
 		rect.transition().attr("width", (score*scaleWidth)+5).duration(1000);
 	}
