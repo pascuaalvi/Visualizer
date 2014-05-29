@@ -22,7 +22,7 @@ function plotTreeGraph() {
 	}, // 2
 	{
 		name : "Waikato Bay of Plenty Magic",
-		teamColor : "#000000"
+		teamColor : "#333333"
 	}, // 3
 	{
 		name : "Canterbury Tactix",
@@ -52,7 +52,7 @@ function plotTreeGraph() {
 
 	// Only potential rivals, not sifted as of yet.
 	// Occurs both ways, but need to be interpreted only once.
-	
+
 	var barHeight = 40;
 	var textMarginLeftX = 0;
 	var textMarginRightX = 710;
@@ -61,8 +61,8 @@ function plotTreeGraph() {
 	var barMarginY = 30;
 	var barTotalLength = 500;
 	var spaceBetweenBars = 10;
-	
-	
+
+
 	var rectHomeMainLabel = svgContainer.append("text")
 	   .attr("x",textMarginLeftX)
 	   .attr("y",textMarginY/2)
@@ -70,7 +70,7 @@ function plotTreeGraph() {
 	   .attr("font-family", "Arial")
 	   .attr("font-size", "30px")
 	   .attr("fill","#000000");
-	
+
 	var rectAwayMainLabel = svgContainer.append("text")
 	   .attr("x",textMarginRightX)
 	   .attr("y",textMarginY/2)
@@ -78,7 +78,7 @@ function plotTreeGraph() {
 	   .attr("font-family", "Arial")
 	   .attr("font-size", "30px")
 	   .attr("fill","#000000");
-	
+
 	for ( var i = 0; i < onGame.length; i++) {
 		var game = onGame[i];
 
@@ -88,21 +88,21 @@ function plotTreeGraph() {
 		}
 
 		var homeaway = score.split("vs");
-		
+
 		var home = parseInt(homeaway[0]);
 		var away = parseInt(homeaway[1]);
 		var total = home+away;
-		
+
 		var homePC = home/total;
 		var awayPC = away/total;
 
 		var homeWidth = homePC*barTotalLength;
 		var awayWidth = awayPC*barTotalLength;
-		
+
 		var homeColor = "";
 		var awayColor = "";
-			
-		
+
+
 		for(var j = 0; j < allRivals.length ; j++){
 			if(game["Home Team"] == allRivals[j]["name"]){
 				log(game["Home Team"] +" compared to: "+allRivals[j]["name"]);
@@ -115,29 +115,29 @@ function plotTreeGraph() {
 				awayColor =  allRivals[j]["teamColor"];
 			}
 		}
-		
+
 		if(homeColor == "" || awayColor == ""){
 			log("No Color Match!");
 		}
-		
+
 		var rectHome = svgContainer.append("rect")
 		   .attr("x", barMarginX)
 		   .attr("y",barMarginY + (i*(barHeight+spaceBetweenBars)))
 		   .attr("width", 0)
 		   .attr("height", barHeight) // Plot difference of Home Team score to Away Team score
 		   .attr("fill",homeColor);
-		
+
 		rectHome.transition().attr("width", homeWidth).duration(1000);
-		
+
 		var rectAway = svgContainer.append("rect")
 		   .attr("x", barMarginX+homeWidth)
 		   .attr("y",barMarginY + (i*(barHeight+spaceBetweenBars)))
 		   .attr("width", 0)
 		   .attr("height", barHeight) // Plot difference of Home Team score to Away Team score
-		   .attr("fill",awayColor);  
-		
+		   .attr("fill",awayColor);
+
 		rectAway.transition().attr("width", awayWidth).duration(1000);
-		
+
 		var rectHomeLabel = svgContainer.append("text")
 		   .attr("x",textMarginLeftX)
 		   .attr("y",(textMarginY + (i*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
@@ -145,7 +145,7 @@ function plotTreeGraph() {
 		   .attr("font-family", "Arial")
 		   .attr("font-size", "15px")
 		   .attr("fill","#000000");
-		
+
 		var rectAwayLabel = svgContainer.append("text")
 		   .attr("x",textMarginRightX)
 		   .attr("y",(textMarginY + (i*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
@@ -153,15 +153,21 @@ function plotTreeGraph() {
 		   .attr("font-family", "Arial")
 		   .attr("font-size", "15px")
 		   .attr("fill","#000000");
-		
-		var separator = svgContainer.append("line")
-		   .attr("x1", barMarginX+(barTotalLength/2))
-		   .attr("y1", textMarginY/2)
-		   .attr("x2", barMarginX+(barTotalLength/2)) // The graph line can only be as long as the input
-		   .attr("y2", (textMarginY + (onGame.length*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
-		   .attr("stroke-width", 2)
-		   .attr("stroke", "black");
-		
 	}
-	
+	var separator = svgContainer.append("line")
+	   .attr("x1", barMarginX+(barTotalLength/2))
+	   .attr("y1", textMarginY/2)
+	   .attr("x2", barMarginX+(barTotalLength/2)) // The graph line can only be as long as the input
+	   .attr("y2", (textMarginY + (onGame.length*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
+	   .attr("stroke-width", 2)
+	   .attr("stroke", "black");
+
+	var rectAwayLabel = svgContainer.append("text")
+	   .attr("x",(barMarginX+(barTotalLength/2))-200)
+	   .attr("y",20)
+	   .text("A score difference close to this boundary is a potential rivalry")
+	   .attr("font-family", "Arial")
+	   .attr("font-size", "15px")
+	   .attr("fill","#FF0000");
+
 }
