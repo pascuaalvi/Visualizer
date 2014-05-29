@@ -22,7 +22,7 @@ function plotTreeGraph() {
 	}, // 2
 	{
 		name : "Waikato Bay of Plenty Magic",
-		teamColor : "#000000"
+		teamColor : "#333333"
 	}, // 3
 	{
 		name : "Canterbury Tactix",
@@ -153,18 +153,7 @@ function plotTreeGraph() {
 		   .attr("font-family", "Arial")
 		   .attr("font-size", "15px")
 		   .attr("fill","#000000");
-		
-		
-		
 	}
-	var rectAwayLabel = svgContainer.append("text")
-	   .attr("x", barMarginX+(barTotalLength/2)-50)
-	   .attr("y", 20)
-	   .text("Rivalry Boundary")
-	   .attr("font-family", "Arial")
-	   .attr("font-size", "15px")
-	   .attr("fill","#FF0000");
-	
 	var separator = svgContainer.append("line")
 	   .attr("x1", barMarginX+(barTotalLength/2))
 	   .attr("y1", textMarginY/2)
@@ -172,4 +161,13 @@ function plotTreeGraph() {
 	   .attr("y2", (textMarginY + (onGame.length*(barHeight+spaceBetweenBars))-(spaceBetweenBars/2)+10))
 	   .attr("stroke-width", 2)
 	   .attr("stroke", "black");
+
+	var rectAwayLabel = svgContainer.append("text")
+	   .attr("x",(barMarginX+(barTotalLength/2))-200)
+	   .attr("y",20)
+	   .text("A score difference close to this boundary is a potential rivalry")
+	   .attr("font-family", "Arial")
+	   .attr("font-size", "15px")
+	   .attr("fill","#FF0000");
+
 }
