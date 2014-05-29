@@ -32,7 +32,10 @@ function load() {
 						}
 						else if(type == 2){
 							plotGraphHierarchy();
-						}						
+						}	
+						else if(type == 3){
+							plotTreeGraph();
+						}
 						else{
 							return;
 						}
