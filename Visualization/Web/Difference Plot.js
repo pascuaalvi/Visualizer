@@ -1,5 +1,70 @@
 type = 1;
 
+function mouseOver(game,adv){
+	// adv - can be just a string with either "Home Team" or "Away Team"
+	// If handling "All", directly refer to the two strings above instead of selectedAdvantage variable (This will result in "All").
+	
+	// Resets the SVG container object, in case the
+	// Visualize button is clicked multiple times.
+	// Prevents the effects of plotGraph() from stacking
+	var info = d3.select("#visualization").append("svg")
+									 .attr("id","info")
+									 .attr("width", 800)
+									 .attr("height", 90);
+	
+	var enemySide = "";
+
+	var enemyScore = 0;
+	var allyScore = 0;
+	
+	var score = awayGames[homeGames.length].Score;
+	if (score.indexOf("draw") == 0) {
+		score = score.slice(5, 11);
+	}
+
+	var homeaway = score.split("vs");
+	var home = homeaway[0];
+	var away = homeaway[1];
+	
+	
+	if(adv == "Home Team"){
+		enemySide = "Away Team";	
+		
+		allyScore = home;
+		enemyScore = away;
+	}
+	else if(adv == "Away Team"){
+		enemySide = "Home Team";
+		
+		allyScore = away;
+		enemyScore = home;
+	}
+	else{
+		log("Invalid Team Advantage!");
+	}
+	
+	var infoBox = info.append("rect")
+	   .attr("x",2)
+	   .attr("y",2)
+	   .attr("width",795)
+	   .attr("height",60)
+	   .attr("fill","white")
+	   .attr("stroke","black");
+	
+	var gameInfo = info.append("text")
+	   .attr("x",5)
+	   .attr("y",5)
+	   .text("Against: "+game[enemySide]+"		"+game[adv]+"'s Score: "+allyScore+"		"+game[enemySide]+"'s Score: "+enemyScore)
+	   .attr("font-family", "sans-serif")
+	   .attr("font-size", "40px")
+	   .attr("fill","red");
+}
+
+function mouseOut(){
+
+	d3.select("#info").remove();
+}
+
 function plotGraphDP() {
 
 	homeGames = [];
@@ -33,7 +98,7 @@ function plotGraphDP() {
 	var svgContainer = d3.select("#visualization").append("svg")
 									 .attr("id","Box")
 									 .attr("width", 800)
-									 .attr("height", 600);
+									 .attr("height", 500);
 	//Axis stuff
 	var maxScoreDiff = 250;
 	var axisX = 100;
@@ -127,6 +192,8 @@ function plotGraphDP() {
 								   .attr("height", 0) // Plot difference of Home Team score to Away Team score
 								   .attr("fill","green");
 				rect.transition().attr("height", diff*scaleHeight).duration(1000).attr("y",lineYPos-(diff*scaleHeight));
+//				rect.addEventListener("mouseover",mouseOver);
+//				rect.addEventListener("mouseout",mouseOut);
 
 			}
 			else{
@@ -135,7 +202,7 @@ function plotGraphDP() {
 				   .attr("y", lineYPos)
 				   .attr("width", barWidth)
 				   .attr("height",0)
-				   .attr("fill","red"); // Plot difference of Home Team score to Away Team score
+				   .attr("fill","red");
 
 				rect.transition().attr("height", diff2*scaleHeight).duration(1000);
 			}
